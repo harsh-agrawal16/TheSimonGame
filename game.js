@@ -1,16 +1,36 @@
 var buttonColors = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
 var userClickedPattern = [];
-var level;
+var level = 0;
 var started = false;
 
+
+//this function checks the userpattern against the gamepattern.
+function checkAnswer(currentLevel){
+  if(userClickedPattern[currentLevel] != gamePattern[currentLevel]){
+    playSound("wrong");
+    $("h1").text("Game Over, You reached Level " + level + " Press any key to restart");
+
+    $("body").addClass("game-over");
+    setTimeout(function() {
+      $("body").removeClass("game-over");
+    }, 200);
+
+    restartGame();
+  }
+
+  else if(currentLevel === gamePattern.length - 1){
+    setTimeout(function(){
+      nextSequence();
+    }, 1000);
+  }
+}
 
 //This function helps restart the game whenever the pattern breaks down.
 function restartGame(){
   started = false;
   gamePattern = [];
   userClickedPattern = [];
-  $("h1").text("Press any key to start");
 }
 
 //This function plays a sound for a particular button , either when clicked or nextSequence is called.
@@ -42,6 +62,7 @@ function nextSequence() {
 }
 
 
+//This function gets triggered whenever a button is clicked.
 $(".btn").click(function(event) {
   var userChosenColor = event.target.id;
   userClickedPattern.push(userChosenColor);
@@ -49,16 +70,7 @@ $(".btn").click(function(event) {
   playSound(userChosenColor);
 
   var len = userClickedPattern.length;
-  if(userClickedPattern[len - 1] != gamePattern[len - 1]){
-    console.log("Game Over");
-    restartGame();
-  }
-
-  else if(len === gamePattern.length){
-    setTimeout(function(){
-      nextSequence();
-    }, 1000);
-  }
+  checkAnswer(len-1);
 })
 
 
