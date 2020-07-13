@@ -31,6 +31,7 @@ function restartGame(){
   started = false;
   gamePattern = [];
   userClickedPattern = [];
+  $(".start-button").removeClass("hide");
 }
 
 //This function plays a sound for a particular button , either when clicked or nextSequence is called.
@@ -63,7 +64,7 @@ function nextSequence() {
 
 
 //This function gets triggered whenever a button is clicked.
-$(".btn").click(function(event) {
+$(".bton").click(function(event) {
   var userChosenColor = event.target.id;
   userClickedPattern.push(userChosenColor);
   buttonAnimation(userChosenColor);
@@ -79,6 +80,20 @@ $(document).keydown(function(event) {
   level = 0;
   if (started === false) {
     started = true;
+    $(".start-button").addClass("hide");
+    userClickedPattern = [];
+    gamePattern = [];
+    nextSequence();
+    $("h1").text("Level " + level);
+  }
+});
+
+
+$(".start-button").click(function(){
+  level = 0;
+  if (started === false) {
+    started = true;
+    $(".start-button").addClass("hide");
     userClickedPattern = [];
     gamePattern = [];
     nextSequence();

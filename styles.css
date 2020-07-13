@@ -3,6 +3,11 @@ body {
   background-color: #011F3F;
 }
 
+h2{
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2rem;
+}
+
 #level-title {
   font-family: 'Press Start 2P', cursive;
   font-size: 3rem;
@@ -17,13 +22,27 @@ body {
 
 }
 
-.btn {
+.row{
+  display: block;
+}
+
+.bton {
   margin: 25px;
   display: inline-block;
   height: 200px;
   width: 200px;
   border: 10px solid black;
   border-radius: 20%;
+}
+
+.start-button{
+  margin: 50px auto 100px auto;
+  background-color: #011F3F;
+  color: #FEF2BF;
+}
+
+.hide{
+  visibility: hidden;
 }
 
 .game-over {
